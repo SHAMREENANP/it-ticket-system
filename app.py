@@ -2,6 +2,7 @@ import os
 import sqlite3
 from functools import wraps
 
+
 from flask import (
     Flask, abort, flash, g, redirect, render_template,
     request, session, url_for
