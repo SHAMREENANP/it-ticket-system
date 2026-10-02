@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Track tickets{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Track your tickets</h1>
+  <form method="get">
+    <label for="email">Enter the email used to create your ticket</label>
+    <input id="email" name="email" type="email" value="{{ email }}" required>
+    <button class="button" type="submit">Find tickets</button>
+  </form>
+</div>
+
+{% if email %}
+  <div class="card">
+    <h2>Tickets for {{ email }}</h2>
+    {% if tickets %}
+      {% for ticket in tickets %}
+        <article class="ticket">
+          <h3>#{{ ticket.id }} — {{ ticket.title }}</h3>
+          <p>{{ ticket.description }}</p>
+          <p><span class="status">{{ ticket.status }}</span></p>
+          <small class="muted">Submitted: {{ ticket.created_at }}</small>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>No tickets found for that email.</p>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
